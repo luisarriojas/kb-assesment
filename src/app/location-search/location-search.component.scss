@@ -1,0 +1,34 @@
+div {
+  form {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 10px 0 10px;
+
+    input {
+      flex: 11;
+      height: 30px;
+      font-size: 16px;
+      border-radius: 5px 0 0 5px;
+      padding: 0 10px 0 10px;
+    }
+
+    button {
+      flex: 1;
+      border-radius: 0 5px 5px 0;
+    }
+  }
+
+  .error-location{
+    background-color: darkorange;
+    width: 50%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+    text-align: center;
+  }
+}
+
+

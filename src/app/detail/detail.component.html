@@ -1,0 +1,110 @@
+<app-location-search></app-location-search>
+
+<!--current weather section.-->
+<div *ngIf="currentWeather">
+
+
+  <div class="city" *ngIf="currentWeather.name">
+    {{currentWeather.name}}
+    <button class="refresh" (click)="refreshCurrentWeather()"></button>
+  </div>
+  <div class="datetime" *ngIf="currentWeather.dt">
+    {{currentWeather.dt * 1000 | date:'long'}}
+  </div>
+  <div class="description" *ngIf="currentWeather.weather?.length > 0">
+    <div *ngFor="let description of currentWeather.weather">
+      <img [src]="getDescriptionIcon(description)">
+      <span>{{description.description}}</span>
+    </div>
+  </div>
+  <div class="current-temp" *ngIf="currentWeather.main?.temp">
+    {{currentWeather.main?.temp}} F
+  </div>
+  <div *ngIf="currentWeather.main?.temp_min">
+    <span>Min:</span> {{currentWeather.main?.temp_min}} F
+  </div>
+  <div *ngIf="currentWeather.main?.temp_max">
+    <span>Max:</span> {{currentWeather.main?.temp_max}} F
+  </div>
+  <div class="precipitation" *ngIf="currentWeather.rain && (currentWeather.rain['1h'] || currentWeather.rain['3h'])">
+    <span>Precipitation:</span>
+    <div *ngIf="currentWeather.rain['1h']">
+      For last 1 hour: {{currentWeather.rain['1h']}} mm
+    </div>
+    <div *ngIf="currentWeather.rain['3h']">
+      For last 3 hours: {{currentWeather.rain['3h']}} mm
+    </div>
+  </div>
+  <div *ngIf="currentWeather.main?.humidity">
+    <span>Humidity:</span> {{currentWeather.main?.humidity}} %
+  </div>
+  <div *ngIf="currentWeather.wind?.speed">
+    <span>Wind:</span> {{currentWeather.wind?.speed}} miles/hour
+  </div>
+  <div *ngIf="currentWeather.sys?.sunrise">
+    <span>Sunrise:</span> {{currentWeather.sys?.sunrise * 1000 | date:'long'}}
+  </div>
+  <div *ngIf="currentWeather.sys?.sunset">
+    <span>Sunset:</span> {{currentWeather.sys?.sunset * 1000 | date:'long'}}
+  </div>
+
+  <hr>
+</div>
+
+<!--forecast weather section.-->
+<div *ngIf="forecastWeather">
+  <div class="city">
+    5-day Forecast
+    <button class="refresh" (click)="refreshForecastWeather()"></button>
+  </div>
+
+  <div *ngFor="let forecast of forecastWeather.list">
+    <div *ngIf="forecast.dt">
+      <button (click)="toggleForecastDetails(forecast)">{{forecast.dt * 1000 | date:'long'}}</button>
+
+      <div *ngIf="forecast.isOpen">
+        <div class="description" *ngIf="forecast.weather?.length > 0">
+          <div *ngFor="let description of forecast.weather">
+            <img [src]="getDescriptionIcon(description)">
+            <span>{{description.description}}</span>
+          </div>
+        </div>
+        <div class="current-temp" *ngIf="forecast.main?.temp">
+          {{forecast.main?.temp}} F
+        </div>
+        <div *ngIf="forecast.main?.temp_min">
+          <span>Min:</span> {{forecast.main?.temp_min}} F
+        </div>
+        <div *ngIf="forecast.main?.temp_max">
+          <span>Max:</span> {{forecast.main?.temp_max}} F
+        </div>
+        <div class="precipitation" *ngIf="forecast.rain && (forecast.rain['1h'] || forecast.rain['3h'])">
+          <span>Precipitation:</span>
+          <div *ngIf="forecast.rain['1h']">
+            For last 1 hour: {{forecast.rain['1h']}} mm
+          </div>
+          <div *ngIf="forecast.rain['3h']">
+            For last 3 hours: {{forecast.rain['3h']}} mm
+          </div>
+        </div>
+        <div *ngIf="forecast.main?.humidity">
+          <span>Humidity:</span> {{forecast.main?.humidity}} %
+        </div>
+        <div *ngIf="forecast.wind?.speed">
+          <span>Wind:</span> {{forecast.wind?.speed}} miles/hour
+        </div>
+        <div *ngIf="forecast.sys?.sunrise">
+          <span>Sunrise:</span> {{forecast.sys?.sunrise * 1000 | date:'long'}}
+        </div>
+        <div *ngIf="forecast.sys?.sunset">
+          <span>Sunset:</span> {{forecast.sys?.sunset * 1000 | date:'long'}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--fallback message when a location is not found.-->
+<div *ngIf="locationNotFound">
+  {{locationNotFound}}
+</div>

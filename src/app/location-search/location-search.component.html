@@ -1,0 +1,12 @@
+<div>
+  <form [formGroup]="searchForm" (ngSubmit)="validateForm(searchForm.value)">
+    <!--location textbox-->
+    <input formControlName="location" (ngModelChange)="resetErrorMessage()"
+           placeholder="Show me the weather in... City & State, or Zip code">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <!--alert to show error message when user types a non-valid location.-->
+  <div class="error-location" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>

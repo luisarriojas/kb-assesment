@@ -1,0 +1,49 @@
+.city{
+  font-size: 40px;
+  font-weight: 700;
+  text-align: center;
+}
+
+button.refresh{
+  width: 25px;
+  height: 25px;
+  background-image: url(https://cdn2.iconfinder.com/data/icons/picons-basic-1/57/basic1-084_rotate_sync-512.png);
+  background-size: cover;
+}
+
+.datetime{
+  text-align: center;
+}
+
+.description{
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 30px;
+
+  div{
+    flex: 1;
+    display: flex;
+    flex-flow: column wrap;
+    text-align: center;
+
+    img{
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 0 auto;
+    }
+  }
+}
+
+.current-temp{
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.precipitation{
+  margin: 30px 0 30px 0;
+}
+
+span{
+  font-weight: 700;
+  text-transform: capitalize;
+}
