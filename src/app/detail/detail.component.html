@@ -52,7 +52,7 @@
 </div>
 
 <!--forecast weather section.-->
-<div *ngIf="forecastWeather">
+<div class="forecast" *ngIf="forecastWeather">
   <div class="city">
     5-day Forecast
     <button class="refresh" (click)="refreshForecastWeather()"></button>
@@ -60,7 +60,7 @@
 
   <div *ngFor="let forecast of forecastWeather.list">
     <div *ngIf="forecast.dt">
-      <button (click)="toggleForecastDetails(forecast)">{{forecast.dt * 1000 | date:'long'}}</button>
+      <button class="toggle" (click)="toggleForecastDetails(forecast)">{{forecast.dt * 1000 | date:'long'}}</button>
 
       <div *ngIf="forecast.isOpen">
         <div class="description" *ngIf="forecast.weather?.length > 0">
